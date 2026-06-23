@@ -38,18 +38,6 @@ let currentQuestionIndex = 0;
 let noClickCount = 0;
 let maybeClickCount = 0;
 
-// Open-source session variable tracking wrong actions
-let currentFailures = [];
-
-function recordFailure(screenName, detailString) {
-    const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    currentFailures.push({
-        time: timestamp,
-        reason: screenName,
-        details: detailString
-    });
-}
-
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -69,7 +57,6 @@ function checkPassword() {
         showScreen('screen-start');
     } else {
         alert("Wrong answer! Hint: He has four legs and is adorable.");
-        recordFailure("Password Screen", `Entered wrong password: "${answer}"`);
     }
 }
 
@@ -129,7 +116,6 @@ function handleAnswer(selected, correct, questionId, questionText) {
         }
     } else {
         alert("Oops! That's wrong. Back to the start page!");
-        recordFailure("Quiz Question", `Failed on [${questionId}] "${questionText}". Picked: "${selected}"`);
         showScreen('screen-start');
     }
 }
@@ -159,11 +145,17 @@ function handleMaybe() {
 function handleNo() {
     noClickCount++;
 
+    // --- RESET THE ENTIRE TEST ON THE 10TH CLICK ---
     if (noClickCount >= 10) {
-        recordFailure("Proposal Screen", "Clicked 'NO' 10 times consecutively.");
-        alert("You failed the test! Let's review where you went wrong...");
+        alert("You failed the test! Back to the beginning page!");
         
-
+        // Zero out all tracking elements safely
+        currentQuestionIndex = 0;
+        noClickCount = 0;
+        maybeClickCount = 0;
+        
+        // Return directly back to the welcome main lobby screen
+        showScreen('screen-start');
         return;
     }
 
