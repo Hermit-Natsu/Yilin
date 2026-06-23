@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Quiz For Yilin</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for a more romantic look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Animated Floating Hearts Background -->
+    <div class="hearts-background">
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💝</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💚</div>
+    </div>
+
+    <!-- 1. Password Screen -->
+    <div id="screen-password" class="card">
+        <h2>Welcome!</h2>
+        <p>Before we begin, please verify your identity.</p>
+        <p class="highlight-text">Who's the cutest dog?</p>
+        <input type="text" id="password-input" placeholder="Answer here...">
+        <br>
+        <button class="main-btn" onclick="checkPassword()">Verify</button>
+    </div>
+
+    <!-- 2. Start/Index Screen -->
+    <div id="screen-start" class="card hidden">
+        <h2>Hi Yilin!!</h2>
+        <p>Before we proceed you need to test your knowledge</p>
+        <button class="main-btn" onclick="startQuiz()">Start Quiz 🌹</button>
+    </div>
+
+    <!-- 3. Dynamic Quiz Screen -->
+    <div id="screen-quiz" class="card hidden">
+        <h3 id="question-text">Question text goes here?</h3>
+        <div id="choices-box" class="choices-container"></div>
+    </div>
+
+<div id="screen-proposal" class="card hidden">
+    <h2 class="romantic-title">One Last Question...</h2>
+    <p class="sweet-text">Do you want to be my girlfriend? 👀</p>    
+    <div class="proposal-buttons" style="position: relative; min-height: 150px; width: 100%; margin-top: 20px;">
+        <button id="maybe-btn" class="main-btn maybe-style" onclick="handleMaybe()">MAYBE</button>
+        <button id="yes-btn" class="main-btn yes-style hidden" onclick="handleYes()">YES</button>
+        <button id="no-btn" class="main-btn no-style" onclick="handleNo()">NO</button>
+    </div>
+</div>
+
+    <!-- 5. Success Screen -->
+    <div id="screen-success" class="card hidden">
+        <h2 class="romantic-title">Yay! ❤️</h2>
+        <p class="sweet-text">You officially passed the test (and made me the happiest guy ever)!</p>
+        <div style="font-size: 50px; margin-top: 15px;"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
